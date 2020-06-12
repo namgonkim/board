@@ -56,5 +56,13 @@
 		order by bno desc
 		limit #{displayPost}, #{postNum}
 	</select>
+	<!-- 조회수 증가 -->
+	<update id="viewCnt" parameterType="int">
+		update 
+			board.tb1_board
+		set
+			viewCnt = viewCnt + 1
+		where bno = #{bno}
+	</update>
 
 </mapper>

@@ -16,6 +16,14 @@
 	<dependencies>
 	
 		<!-- 추가 메이븐 xml 시작 -->
+		<!-- 트랜젝션 START -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- 트랜젝션 END -->
 		<!-- DB 연결 mvnrepository/mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>

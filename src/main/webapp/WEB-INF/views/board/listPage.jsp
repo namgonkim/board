@@ -7,6 +7,12 @@
 <title>게시판 목록</title>
 </head>
 <body>
+
+<ul>
+	<li><a href="/">메인</a></li>
+	<li><a href="/board/write">게시물 작성</a></li>
+</ul>
+
 <table>
 	<!-- 테이블 헤드 -->
  	<thead>
@@ -42,18 +48,16 @@
 		</c:forEach>
 	</tbody>
 </table>
-<P> <a href="/"> * 메인</a></P>
-<br>
-<P> <a href="/board/write"> * 게시물 작성</a></P>
-<br>
+
 	<div>
-		<c:if test="${prev}">
-			<span>[ <a href="/board/listPage?num=${startPageNum - 1}">이전</a>
+		<c:if test="${page.prev}">
+			<span>[ <a href="/board/listPage?num=${page.startPageNum - 1}">이전</a>
 				]
 			</span>
 		</c:if>
 
-		<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+			var="num">
 			<span> <c:if test="${select != num}">
 					<a href="/board/listPage?num=${num}">${num}</a>
 				</c:if> <c:if test="${select == num}">
@@ -63,11 +67,21 @@
 			</span>
 		</c:forEach>
 
-		<c:if test="${next}">
-			<span>[ <a href="/board/listPage?num=${endPageNum + 1}">다음</a>
+		<c:if test="${page.next}">
+			<span>[ <a href="/board/listPage?num=${page.endPageNum + 1}">다음</a>
 				]
 			</span>
 		</c:if>
+	</div>
+	<div>
+		<select name="searchType">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="title_content">제목+내용</option>
+			<option value="writer">작성자</option>
+		</select> <input type="text" name="keyword" />
+
+		<button type="button">검색</button>
 	</div>
 </body>
 </html>

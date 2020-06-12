@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.board.dao.BoardDAO;
 import com.board.domain.BoardVO;
@@ -28,9 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		dao.write(vo);
 	}
 	// 게시물 조회
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO view(int bno) throws Exception {
 		// TODO Auto-generated method stub
+		dao.viewCnt(bno);
 		return dao.view(bno);
 	}
 	// 게시물 수정
@@ -49,7 +53,6 @@ public class BoardServiceImpl implements BoardService {
 	public int count() throws Exception {
 		return dao.count();
 	}
-
 	// 게시물 목록 + 페이징
 	@Override
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {

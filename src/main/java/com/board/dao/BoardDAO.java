@@ -26,4 +26,8 @@ public interface BoardDAO {
 	
 	// 게시물 목록 + 페이징
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception;
+	
+	// 조회수 증가
+	public int viewCnt(int bno) throws Exception;
+	
 }

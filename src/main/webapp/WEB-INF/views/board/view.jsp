@@ -24,7 +24,7 @@
 	<input type=button value="게시물 삭제" onclick="location.href ='/board/delete?bno=${view.bno}'">
 	<br><br>
 	<div>
-		<a href="/board/list"> * 게시물 목록 보기</a>
+		<a href="/board/listPage?num=1"> * 게시물 목록 보기</a>
 	</div>
 </body>
 </html>

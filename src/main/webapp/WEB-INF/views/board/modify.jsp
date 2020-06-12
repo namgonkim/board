@@ -22,7 +22,7 @@
 	</form>
 	<br><br>
 	<div>
-		<a href="/board/list"> * 돌아가기</a>
+		<a href="/board/listPage?num=1"> * 돌아가기</a>
 	</div>
 </body>
 </html>
