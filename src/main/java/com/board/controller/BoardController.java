@@ -16,7 +16,7 @@ import com.board.domain.Page;
 import com.board.service.BoardService;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/*")
 public class BoardController {
 
 	@Inject
@@ -48,7 +48,7 @@ public class BoardController {
 	public String postWrite(BoardVO vo) throws Exception {
 		
 		service.write(vo);
-		return "redirect:/board/listPage?num=1";
+		return "redirect:/listPage?num=1";
 	}
 	
 	// 게시물 조회
@@ -78,14 +78,14 @@ public class BoardController {
 	public String postModify(BoardVO vo) throws Exception {
 
 		service.modify(vo);
-		return "redirect:/board/listPage?num=1";
+		return "redirect:/listPage?num=1";
 	}
 	// 게시물 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 
 		service.delete(bno);
-		return "redirect:/board/listPage?num=1";
+		return "redirect:/listPage?num=1";
 	}
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listpage", method = RequestMethod.GET)
