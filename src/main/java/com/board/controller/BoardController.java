@@ -6,14 +6,18 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.dao.BoardDAO;
 import com.board.domain.BoardVO;
 import com.board.domain.Page;
+import com.board.domain.ReplyVO;
 import com.board.service.BoardService;
+import com.board.service.ReplyService;
 
 @Controller
 @RequestMapping("/*")
@@ -21,6 +25,8 @@ public class BoardController {
 
 	@Inject
 	private BoardService service;
+	@Inject
+	private ReplyService replyservice;
 	
 	// 홈으로가기
 	@RequestMapping(value = "/")
@@ -64,6 +70,9 @@ public class BoardController {
 		
 		BoardVO vo = service.view(bno);
 		model.addAttribute("view", vo);
+		
+		List<ReplyVO> replyList = replyservice.readReply(bno);
+		model.addAttribute("replyList", replyList);
 	}
 	
 	// 게시물 수정
@@ -114,8 +123,79 @@ public class BoardController {
 		model.addAttribute("page", page);
 		// 페이지 선택
 		model.addAttribute("select", num);
-		
-		
+	}
+	
+	// 게시물 목록 + 페이징 + 검색 추가
+	@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
+	public void getListPageSearch(Model model, @RequestParam("num") int num,
+	@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+	@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) throws Exception {
+
+		Page page = new Page();
+
+		page.setNum(num);
+		page.setCount(service.count());
+
+		List<BoardVO> list = null;
+		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
+
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("select", num);
+
 	}
 
+	// 댓글 작성
+	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
+	public String replyWrite(ReplyVO vo, Model model) throws Exception {
+		replyservice.writeReply(vo);
+
+		model.addAttribute("bno", vo.getBno());
+
+		return "redirect:/view";
+	}
+
+	// 댓글 수정 POST
+	@RequestMapping(value = "/replyUpdate", method = RequestMethod.POST)
+	public String postreplyUpdate(ReplyVO vo, RedirectAttributes rttr) throws Exception {
+
+		replyservice.updateReply(vo);
+
+		rttr.addAttribute("bno", vo.getBno());
+
+		return "redirect:/view";
+	}
+
+	// 댓글 삭제 POST
+	@RequestMapping(value = "/replyDelete", method = RequestMethod.POST)
+	public String postreplyDelete(ReplyVO vo, RedirectAttributes rttr) throws Exception {
+		
+		replyservice.deleteReply(vo);
+
+		rttr.addAttribute("bno", vo.getBno());
+
+		return "redirect:/view";
+	}
+	
+	// 댓글 수정 GET
+	@RequestMapping(value = "/replyUpdate", method = RequestMethod.GET)
+	public void getReplyUpdate(@RequestParam("rno") int rno, Model model) throws Exception {
+	 
+	 ReplyVO vo = null;
+	 vo = replyservice.readReplySelect(rno);
+	 
+	 model.addAttribute("readReply", vo);
+
+	}
+
+	// 댓글 수정 GET
+	@RequestMapping(value = "/replyDelete", method = RequestMethod.GET)
+	public void getReplyDelete(@RequestParam("rno") int rno, Model model) throws Exception {
+	 
+	 ReplyVO vo = null;
+	 vo = replyservice.readReplySelect(rno);
+	 
+	 model.addAttribute("readReply", vo);
+	}
 }

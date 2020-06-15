@@ -50,7 +50,7 @@
 						id="dataTable_previous">
 						<!-- 이전 페이지 --> <c:if test="${page.prev}">
 							<span>[ <a aria-controls="dataTable" class="page-link"
-								href="/listPage?num=${page.startPageNum - 1}">이전</a> ]
+								href="/listPageSearch?num=${page.startPageNum - 1}">이전</a> ]
 							</span>
 						</c:if>
 					</li>
@@ -60,7 +60,7 @@
 						<span><c:if test="${select != num}">
 							<li class="paginate_button page-item">
 								<a class="page-link" aria-controls="dataTable"
-								href="/listPage?num=${num}">${num}</a>
+								href="/listPageSearch?num=${num}">${num}</a>
 							</li>
 						</c:if>
 						<c:if test="${select == num}">
@@ -75,16 +75,35 @@
 					<li class="paginate_button page-item next"><c:if
 							test="${page.next}">
 							<span>[ <a class="page-link" aria-controls="dataTable"
-								href="/listPage?num=${page.endPageNum + 1}">다음</a> ]
+								href="/listPageSearch?num=${page.endPageNum + 1}">다음</a> ]
 							</span>
 						</c:if></li>
 				</ul>
 			</div>
 			</div>
+			<div>
+				<select name="searchType">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="title_content">제목+내용</option>
+					<option value="writer">작성자</option>
+				</select> <input type="text" name="keyword" />
+
+				<button type="button" id="searchBtn">검색</button>
+			</div>
+
 		</div>
 	</div>
 
 
 </div>
+<script>
+	document.getElementById("searchBtn").onclick = function() {
 
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = document.getElementsByName("keyword")[0].value;
+
+		location.href = "/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
 <%@ include file="includes/footer.jsp"%>

@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ include file="includes/header.jsp"%>
 
@@ -46,6 +47,72 @@
 			</div>
 		</div>
 	</div>
+	<div class="card shadow mb-2">
+		<div class="card-header py-4">
+			<h4 class="m-0 font-weight-bold text-dark">댓글 </h4>
+		</div>
+		<div align="center" class="card shadow mb-1 col-xl-15">
+			<div class="card-header py-2">
+				<h6 class="m-0 font-weight-bold text-dark">댓글 작성</h6>
+			</div>
+			<div class="card-body">
+				<form name="replyForm" method="post">
+					<input type="hidden" id="bno" name="bno" value="${view.bno}" />
+					<table class="table table">
+						<tbody>
+							<tr>
+								<th>댓글 작성자</th>
+								<td><input type="text" id="writer" name="writer"
+									class="form-control" maxlength="20"></td>
+							</tr>
+							<tr>
+								<th>댓글 내용</th>
+								<td><textarea class="form-control" placeholder="내용을 입력하세요."
+										name="content" id="content" maxlength="1024"
+										style="height: 100px;"></textarea></td>
+							</tr>
+						</tbody>
+					</table>
+					<div align="right" class="mb-2">
+						<button type="button" class="replyWriteBtn">작성</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div align="center" class="card-header py-2">
+			<h6 class="m-0 font-weight-bold text-dark">댓글 목록 </h6>
+		</div>
+		<div class="card-body">
+			<ol class="replyList">
+				<table class="table">
+				<c:forEach items="${replyList}" var="replyList">
+				<tr>
+					<th>작성자</th>
+					<td>${replyList.writer}</td>
+				</tr>
+				<tr>
+					<th>작성 날짜</th>
+					<td><fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><p>${replyList.content}</p></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+					<div align="right">
+						<button type="button" class="replyUpdate" data-rno="${replyList.rno}">수정</button>
+ 						<button type="button" class="replyDelete" data-rno="${replyList.rno}">삭제</button>
+					</div>
+					</td>
+				</tr>
+				</c:forEach>
+				</table>
+			</ol>
+		</div>
+	</div>
+	
 
 <!-- 푸터 복붙 -->
 </div>
@@ -60,4 +127,24 @@
 			return;
 		}
 	}
+	
+	$(".replyWriteBtn").on("click", function(){
+		  var formObj = $("form[name='replyForm']");
+		  formObj.attr("action", "/replyWrite");
+		  formObj.submit();
+	});
+
+	$(".replyUpdate").click(
+			function() {
+				self.location = "/replyUpdate?bno=${view.bno}"
+						+ "&rno="
+						+ $(this).attr("data-rno");
+			});
+
+	$(".replyDelete").click(
+			function() {
+				self.location = "/replyDelete?bno=${view.bno}"
+						+ "&rno="
+						+ $(this).attr("data-rno");
+			});
 </script>

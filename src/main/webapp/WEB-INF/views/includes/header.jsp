@@ -60,7 +60,7 @@
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="/list">게시글 목록</a>
             <a class="collapse-item" href="/listPage?num=1">게시글 목록(페이징)</a>
-            <a class="collapse-item" href="/listPage?num=1">게시글 목록(페이징+검색)</a>
+            <a class="collapse-item" href="/listPageSearch?num=1">게시글 목록(페이징+검색)</a>
           </div>
         </div>
       </li>
