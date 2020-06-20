@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -15,7 +15,7 @@
 		<div class="card-body">
 			<div align="right">
 				<input class="btn btn-primary" type="button" value="작성하기"
-					onclick="location.href ='/write'"></input>
+					onclick="location.href ='/board/write'"></input>
 			</div>
 			<br>
 			<div class="table-responsive">
@@ -32,7 +32,7 @@
 					<tbody>
 						<c:forEach items="${list}" var="list">
 							<tr>
-								<td><a href="/view?bno=${list.bno}"> ${list.title} </a></td>
+								<td><a href="/board/view?bno=${list.bno}"> ${list.title} </a></td>
 								<td>${list.writer}</td>
 								<td>${list.regDate}</td>
 								<td>${list.viewCnt}</td>
@@ -50,7 +50,7 @@
 						id="dataTable_previous">
 						<!-- 이전 페이지 --> <c:if test="${page.prev}">
 							<span>[ <a aria-controls="dataTable" class="page-link"
-								href="/listPage?num=${page.startPageNum - 1}">이전</a> ]
+								href="/board/listPage?num=${page.startPageNum - 1}">이전</a> ]
 							</span>
 						</c:if>
 					</li>
@@ -60,7 +60,7 @@
 						<span><c:if test="${select != num}">
 							<li class="paginate_button page-item">
 								<a class="page-link" aria-controls="dataTable"
-								href="/listPage?num=${num}">${num}</a>
+								href="/board/listPage?num=${num}">${num}</a>
 							</li>
 						</c:if>
 						<c:if test="${select == num}">
@@ -75,7 +75,7 @@
 					<li class="paginate_button page-item next"><c:if
 							test="${page.next}">
 							<span>[ <a class="page-link" aria-controls="dataTable"
-								href="/listPage?num=${page.endPageNum + 1}">다음</a> ]
+								href="/board/listPage?num=${page.endPageNum + 1}">다음</a> ]
 							</span>
 						</c:if></li>
 				</ul>
@@ -87,4 +87,4 @@
 
 </div>
 
-<%@ include file="includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>

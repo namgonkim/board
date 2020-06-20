@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -15,7 +15,7 @@
 		<div class="card-body">
 			<div align="right">
 				<input class="btn btn-primary" type="button" value="작성하기"
-					onclick="location.href ='/write'"></input>
+					onclick="location.href ='/board/write'"></input>
 			</div>
 			<br>
 			<div class="table-responsive">
@@ -32,7 +32,7 @@
 					<tbody>
 						<c:forEach items="${list}" var="list">
 							<tr>
-								<td><a href="/view?bno=${list.bno}"> ${list.title} </a></td>
+								<td><a href="/board/view?bno=${list.bno}"> ${list.title} </a></td>
 								<td>${list.writer}</td>
 								<td>${list.regDate}</td>
 								<td>${list.viewCnt}</td>
@@ -50,7 +50,7 @@
 						id="dataTable_previous">
 						<!-- 이전 페이지 --> <c:if test="${page.prev}">
 							<span>[ <a aria-controls="dataTable" class="page-link"
-								href="/listPageSearch?num=${page.startPageNum - 1}">이전</a> ]
+								href="/board/listPageSearch?num=${page.startPageNum - 1}">이전</a> ]
 							</span>
 						</c:if>
 					</li>
@@ -60,7 +60,7 @@
 						<span><c:if test="${select != num}">
 							<li class="paginate_button page-item">
 								<a class="page-link" aria-controls="dataTable"
-								href="/listPageSearch?num=${num}">${num}</a>
+								href="/board/listPageSearch?num=${num}">${num}</a>
 							</li>
 						</c:if>
 						<c:if test="${select == num}">
@@ -75,21 +75,22 @@
 					<li class="paginate_button page-item next"><c:if
 							test="${page.next}">
 							<span>[ <a class="page-link" aria-controls="dataTable"
-								href="/listPageSearch?num=${page.endPageNum + 1}">다음</a> ]
+								href="/board/listPageSearch?num=${page.endPageNum + 1}">다음</a> ]
 							</span>
 						</c:if></li>
 				</ul>
 			</div>
 			</div>
-			<div>
+			<div class="input-group">
 				<select name="searchType">
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 					<option value="title_content">제목+내용</option>
 					<option value="writer">작성자</option>
-				</select> <input type="text" name="keyword" />
+				</select>
+				<input type="text" name="keyword" class="form-control"/>
 
-				<button type="button" id="searchBtn">검색</button>
+				<button type="button" id="searchBtn" class="btn btn-outline-primary">검색</button>
 			</div>
 
 		</div>
@@ -103,7 +104,7 @@
 		let searchType = document.getElementsByName("searchType")[0].value;
 		let keyword = document.getElementsByName("keyword")[0].value;
 
-		location.href = "/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+		location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 	};
 </script>
-<%@ include file="includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>

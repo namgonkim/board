@@ -11,14 +11,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
-
+  <title>NamgonKim`s Web Board</title>
+  
   <!-- Custom fonts for this template-->
-  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -26,7 +27,6 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
     <!-- Sidebar -->
     <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -58,9 +58,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="/list">게시글 목록</a>
-            <a class="collapse-item" href="/listPage?num=1">게시글 목록(페이징)</a>
-            <a class="collapse-item" href="/listPageSearch?num=1">게시글 목록(페이징+검색)</a>
+            <a class="collapse-item" href="/board/list">게시글 목록</a>
+            <a class="collapse-item" href="/board/listPage?num=1">게시글 목록(페이징)</a>
+            <a class="collapse-item" href="/board/listPageSearch?num=1">게시글 목록(페이징+검색)</a>
           </div>
         </div>
       </li>
@@ -292,10 +292,23 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
+            <!-- 로그인 안되어있을떄 -->
+            <c:if test="${member == null}">
+            <li class="nav-item">
+            
+              <a class="nav-link" href="../member/login" role="button">
+                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인</span>
+                	<i class="fas fa-user"></i>
+              </a>
+            </li>
+            </c:if>
+            <!-- 로그인 되어있을 때 -->
+            <c:if test="${member != null}">
             <li class="nav-item dropdown no-arrow">
+            
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                	<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -318,6 +331,7 @@
                 </a>
               </div>
             </li>
+            </c:if>
 
           </ul>
 

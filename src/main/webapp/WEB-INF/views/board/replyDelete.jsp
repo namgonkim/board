@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -32,7 +32,7 @@
     
     // 취소 버튼 클릭
     $("#cancel_btn").click(function(){
-     self.location = "/view?bno=${readReply.bno}";    
+     self.location = "/board/view?bno=${readReply.bno}";    
     });
 </script>
 	</form>
@@ -40,4 +40,4 @@
 <!-- 푸터 복붙 -->
 </div>
 
-<%@ include file="includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>

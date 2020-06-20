@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -16,7 +16,7 @@
 		</div>
 		<div class="card-body">
 			<div align="right" class="mb-4">
-				<a href="/listPage?num=1" class="btn btn-dark btn-icon-split">
+				<a href="/board/listPage?num=1" class="btn btn-dark btn-icon-split">
 				<span
 					class="icon text-gray-600"> <i class="fas fa-arrow-right"></i>
 				</span> <span class="text">목록</span>
@@ -41,8 +41,8 @@
 				rows="15" readonly> ${view.content}</textarea> <br>
 			<div align="right" class="mb-2">
 				<button type="submit" class="btn btn-primary"
-				onclick="location.href ='/modify?bno=${view.bno}'">게시물 수정</button>
-				<button type="submit" class="btn btn-primary"
+				onclick="location.href ='/board/modify?bno=${view.bno}'">게시물 수정</button>
+				<button type="submit" class="btn btn-outline-secondary"
 				onclick="del_button()">게시물 삭제</button>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 						</tbody>
 					</table>
 					<div align="right" class="mb-2">
-						<button type="button" class="replyWriteBtn">작성</button>
+						<button type="button" class="replyWriteBtn btn btn-outline-primary">작성</button>
 					</div>
 				</form>
 			</div>
@@ -102,8 +102,8 @@
 					<th></th>
 					<td>
 					<div align="right">
-						<button type="button" class="replyUpdate" data-rno="${replyList.rno}">수정</button>
- 						<button type="button" class="replyDelete" data-rno="${replyList.rno}">삭제</button>
+						<button type="button" class="replyUpdate btn btn-outline-primary" data-rno="${replyList.rno}">수정</button>
+ 						<button type="button" class="replyDelete btn btn-outline-primary" data-rno="${replyList.rno}">삭제</button>
 					</div>
 					</td>
 				</tr>
@@ -117,12 +117,12 @@
 <!-- 푸터 복붙 -->
 </div>
 
-<%@ include file="includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>
 <!-- 삭제버튼 클릭시 경고 창 -->
 <script type="text/javascript">
 	function del_button() {
 		if (confirm("삭제할까요?") == true) { //확인
-			location.href ='/delete?bno=${view.bno}';
+			location.href ='/board/delete?bno=${view.bno}';
 		} else { //취소
 			return;
 		}
@@ -130,20 +130,20 @@
 	
 	$(".replyWriteBtn").on("click", function(){
 		  var formObj = $("form[name='replyForm']");
-		  formObj.attr("action", "/replyWrite");
+		  formObj.attr("action", "/board/replyWrite");
 		  formObj.submit();
 	});
 
 	$(".replyUpdate").click(
 			function() {
-				self.location = "/replyUpdate?bno=${view.bno}"
+				self.location = "/board/replyUpdate?bno=${view.bno}"
 						+ "&rno="
 						+ $(this).attr("data-rno");
 			});
 
 	$(".replyDelete").click(
 			function() {
-				self.location = "/replyDelete?bno=${view.bno}"
+				self.location = "/board/replyDelete?bno=${view.bno}"
 						+ "&rno="
 						+ $(this).attr("data-rno");
 			});

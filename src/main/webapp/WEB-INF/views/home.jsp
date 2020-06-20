@@ -1,58 +1,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="includes/header.jsp" %>
-
-<!-- Begin Page Content -->
-<div class="container-fluid">
-	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h5 mb-0 text-gray-800">Home</h1>
-		<a href="https://github.com/namgonkim/board"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<i class="fa fa-github" aria-hidden="true"></i> Github</a>
-	</div>
-
-	<!-- Home header img -->
-	<div class="card shadow mb-4">
-		<div style="position: relative;">
-			<img src="/resources/img/home-header.jpg"/>
-			<div style="left: 100px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
-			Welcome!</div>
-		</div>
-	</div>
-
-	<!-- Illustrations -->
-	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">실행 환경</h6>
-		</div>
-		<div class="card-body">
-			<p>	Idle : Eclipse <br>
-				Language : JSP <br>
-				Framework : Spring <br>
-				Server : Apache-Tomcat 9.0 <br>
-				DataBase : MySQL 8.0.2x <br>
-			</p>
-		</div>
-	</div>
-
-	<!-- Approach -->
-	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Development
-				Approach</h6>
-		</div>
-		<div class="card-body">
-			<p>
-			광운대학교 컴퓨터정보공학부 <br>
-			<a href="https://github.com/namgonkim">Github 홈페이지<br> </a>
-			</p>
-		</div>
-	</div>
-
-</div>
-
-<%@ include file="includes/footer.jsp" %>
+<html>
+<head>
+	<title>Home</title>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+</head>
+<a href="/board/main">로그인하지 않고 웹 보드 메인으로 바로가기</a><br />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#logoutBtn").on("click", function(){
+			location.href="member/logout";
+		});
+	});
+</script>
+<body>
+	<form name='homeForm' method="post" action="/member/login">
+		<c:if test="${member == null}">
+			<div>
+				<label for="userId"></label>
+				<input type="text" id="userId" name="userId">
+			</div>
+			<div>
+				<label for="userPass"></label>
+				<input type="password" id="userPass" name="userPass">
+			</div>
+			<div>
+				<button type="submit">로그인</button>
+				<a href="/member/register">회원가입</a>
+			</div>
+		</c:if>
+		<c:if test="${member != null }">
+			<div>
+				<p>${member.userName}님 환영 합니다.</p>
+				<button id="logoutBtn" type="button">로그아웃</button>
+			</div>
+		</c:if>
+		<c:if test="${msg == false}">
+			<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
+		</c:if>
+	</form>
+</body>
+</html>
