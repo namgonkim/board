@@ -5,23 +5,23 @@
 ## version update
  * VER1
    - 게시판 CRUD 구현
-<hr>
+
  * VER2
    - viewCnt/Page Class/search Bar(기능x)
    - sb admin [js/css] 적용중(오류[1])
-<hr>
+
  * VER3
    - 부트스트랩 테마 적용 (ver2 오류[1] 고침)
-<hr>
+
  * VER4
    - 검색 기능(Search Bar) 구현( 페이징 처리와 함께 시 미흡함. 부분적 기능 해결 )
    - 댓글 작성/수정/삭제 추가
    - 웹 테마 지속적으로 적용 중
-<hr>
+
  * VER5
    - 게시판 구조 변경 (member , {board + home} -> member, board, home)
    - 로그인 기능 추가 (다른 페이지에서 로그인 보여줄때 안나오는 오류[2] 있음)
-<hr>
+
  * VER6
    - 로그인 기능 정리
    1. 회원가입 기능
@@ -34,7 +34,7 @@
    - 새 비밀번호 입력 시 새로운 비밀번호가 암호화 되어 적용
    5. 회원 탈퇴
    - 비밀번호를 입력하여 회원 탈퇴
-<hr>
+
 
 미흡한점
 -홈 UI
