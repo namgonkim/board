@@ -98,6 +98,24 @@
   <!-- Custom scripts for all pages-->
   <script src="../resources/js/sb-admin-2.min.js"></script>
 
+	<!-- 로그인 공백 검사 -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#submit").on("click", function() {
+				if ($("#userId").val() == "") {
+					alert("아이디를 입력해주세요.");
+					$("#userId").focus();
+					return false;
+				}
+				if ($("#userPass").val() == "") {
+					alert("비밀번호를 입력해주세요.");
+					$("#userPass").focus();
+					return false;
+				}
+			});
+		})
+	</script>
+
 </body>
 
 </html>

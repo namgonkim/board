@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="../includes/header.jsp" %>
 
@@ -19,7 +19,14 @@
 		<div style="position: relative;">
 			<img src="/resources/img/home-header.jpg"/>
 			<div style="left: 100px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
-			Welcome! ${member.userID}!</div>
+			Welcome, 
+				<c:if test="${member == null}"> 
+					비회원님!
+				</c:if>
+				<c:if  test="${member != null}">
+					${member.userName}님!
+				</c:if>
+			</div>
 		</div>
 	</div>
 

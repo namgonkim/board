@@ -49,7 +49,8 @@ public class BoardController {
 			model.addAttribute("msg",false);
 			logger.info("no have login");
 		}
-		logger.info(loginInfo.toString());
+		if(loginInfo != null)
+			logger.info(loginInfo.toString());
 	}
 	
 	// 게시물 목록

@@ -14,8 +14,34 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-	
 		<!-- 추가 메이븐 xml 시작 -->
+		<!-- 비밀번호 암호화 시작 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.0.8.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.0.8.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.0.8.RELEASE</version>
+		</dependency>
+		<!-- 비밀번호 암호화 끝 -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<!-- 제이슨: 비동기 웹페이지 처리_현페이지에서 특정 데이터 전송 가능케 함. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.6</version>
+		</dependency>
 		<!-- 트랜젝션 START -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 		<dependency>

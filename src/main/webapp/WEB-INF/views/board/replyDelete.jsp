@@ -1,8 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -41,3 +39,4 @@
 </div>
 
 <%@ include file="../includes/footer.jsp"%>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>

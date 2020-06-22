@@ -1,8 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -57,7 +55,7 @@
 
 <%@ include file="../includes/footer.jsp"%>
 <!-- 푸터 끝 -->
-
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script>
     // 폼을 변수에 저장
     var formObj = $("form[role='form']"); 

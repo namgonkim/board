@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -21,7 +20,12 @@
 				</span> <span class="text">목록</span>
 				</a>
 			</div>
-
+			
+			<c:if test="${member == null }">
+				<h5> 로그인 후에 글을 작성하실 수 있습니다. </h5>
+				<a type="button" href="/member/login" class="btn btn-primary"> 로그인 </a>
+			</c:if>
+			<c:if test="${member != null }">
 			<form method="post">
 				<table class="table table-striped">
 					<thead>
@@ -43,7 +47,8 @@
 							<th>작성자</th>
 							<td>
 							<input type="text" class="form-control" placeholder="작성자를 입력하세요."
-							name="writer" maxlength="50" >
+							name="writer" maxlength="50"
+							<c:if test="${member !=null}"> value="${member.userName}" readonly="readonly"</c:if> >
 							</td>
 						</tr>
 						<tr>
@@ -59,6 +64,7 @@
 					onclick="check_null()">작성하기</button>
 				</div>
 			</form>
+			</c:if>
 		</div>
 	</div>
 

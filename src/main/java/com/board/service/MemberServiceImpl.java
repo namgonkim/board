@@ -24,5 +24,29 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.login(vo);
 	}
+	// 회원정보 수정
+	@Override
+	public void modify(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.modify(vo);
+	}
+	// 비밀번호 변경
+	@Override
+	public void modify_pass(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.modify_pass(vo);
+	}
+	// 회원탈퇴
+	@Override
+	public void withdrawal(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.withdrawal(vo);
+	}
+	// id 중복검사
+	@Override
+	public MemberVO idCheck(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.idCheck(userId);
+	}
 
 }

@@ -26,10 +26,10 @@ public class MemberVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Date getRegDate() {
+	public Date getUserDate() {
 		return userDate;
 	}
-	public void setRegDate(Date userDate) {
+	public void setUserDate(Date userDate) {
 		this.userDate = userDate;
 	}
 	
